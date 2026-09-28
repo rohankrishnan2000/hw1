@@ -10,55 +10,73 @@ g++ split.cpp test_split.cpp -o test_split
 */
 
 #include "split.h"
-#include <iostream>
+#include <iostream> 
 using namespace std;
 
 void printlist(Node* head){
-  while(head!= nullptr){
-    cout<< head-> value <<" ";
+    while(head != nullptr){
+    cout << head -> value << " ";
     head = head->next;
-
   }
   cout << endl;
 }
+
+
+void deleteList(Node* head){
+  while(head != nullptr){
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+  }
+}
 int main(int argc, char* argv[])
 {
- Node* a = new Node{1, nullptr};
- a->next = new Node{2, nullptr};
- a->next->next = new Node{3, nullptr};
- a->next->next->next = new Node{4, nullptr};
 
- Node* odds = nullptr;
- Node* evens =nullptr;
+  Node* a = new Node{1, nullptr};
+  a->next = new Node{2, nullptr};
+  a->next->next = new Node{3, nullptr};
+  a->next->next->next = new Node{4,nullptr};
 
- split(a, odds, evens);
+  Node* odds = nullptr;
+  Node* evens = nullptr;
+  split(a, odds, evens);
 
- cout <<"Odds:";
- printlist(odds);
+  cout << "Odds";
+  printlist(odds);
+  cout << "Evens:";
+  printlist(evens);
 
- cout << "Evens:";
- printlist(events);
+  deleteList(odds);
+  deleteList(evens);
 
- Node* b = new Node{2, nullptr};
-b->next = new Node(4,nullptr);
-b->next->next = new Node(6,nullptr);
 
-odds = nullptr;
-evens = nullptr
+  Node* b = new Node{2, nullptr};
+  b->next = new Node(4, nullptr);
+  b->next->next = new Node(6, nullptr);
 
-split(b, odds, evens);
+  odds = nullptr;
+  evens = nullptr;
+  split(b, odds, evens);
+  cout << "Odds:";
+  printlist(odds);
 
-cout <<"Odds: ";
-printlist(odds);
+  cout << "Evens";
+  printlist(evens);
+  deleteList(odds);
+  deleteList(evens);
 
-cout << "Evens: ";
+  Node* c = new Node{7, nullptr};
 
-printlist(evens);
+  odds = nullptr;
+  evens = nullptr;
+  split(c, odds, evens);
 
-Node* c = new Node{7, nullptr}
+  cout << "Odds";
+  printlist(odds);
 
-odds = nullptr
-evens = nullptr
-split(c, odds, evens);
+  cout <<"Evens:";
+  printlist(evens);
 
+  deleteList(odds);
+  deleteList(evens);
 }
